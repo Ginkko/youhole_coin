@@ -65,7 +65,7 @@ function onPlayerStateChange(event) {
   if (event.data == YT.PlayerState.ENDED) {
     acceptingInput = false;
     toggleStatic();
-    nextVideo();
+    //nextVideo(); - DISABLED FOR COIN SLOT
   }
 
   if(event.data == YT.PlayerState.PLAYING) {
@@ -104,7 +104,7 @@ function toggleStatic() {
 
 // ---------------------------- FINDING & PLAYING VIDEOS ----------------------------
 
-// User input
+// User input - DISABLED FOR COIN SLOT
 /*
 $(document).on("keydown", function (e) {
   if(acceptingInput) {
