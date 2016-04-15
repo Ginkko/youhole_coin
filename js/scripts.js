@@ -16,7 +16,7 @@ var isPopulating = false;
 
 var acceptingInput = false;
 var mobileStartFlag = false;
-
+var initFlag = false;
 
 
 // This code loads the IFrame Player API code asynchronously.
@@ -55,8 +55,9 @@ function onError(event) {
 
 // The API will call this function when the video player is ready.
 function onPlayerReady(event) {
+    acceptingInput = true;
     mobileStartFlag = true;
-    nextVideo();
+    //nextVideo();
 }
 
 // The API calls this function when the player's state changes.
@@ -64,14 +65,14 @@ var done = false;
 function onPlayerStateChange(event) {
   if (event.data == YT.PlayerState.ENDED) {
     acceptingInput = false;
-    toggleStatic();
+    enableStatic();
     //nextVideo(); - DISABLED FOR COIN SLOT
   }
 
   if(event.data == YT.PlayerState.PLAYING) {
     acceptingInput = true;
     player.unMute()
-    toggleStatic();
+    disableStatic();
   }
 }
 
@@ -91,28 +92,29 @@ soundManager.onready(function() {
     }
 });
 
-// function enableStatic() {
-//   $('#static').addClass('static-on');
-//   $('#static').removeClass('static-off');
-//
-// }
+function enableStatic() {
+   $('#static').addClass('static-on');
+   $('#static').removeClass('static-off');
+   soundManager.unmute('staticAudio');
+ }
+
+ function disableStatic() {
+    $('#static').addClass('static-off');
+    $('#static').removeClass('static-on');
+    soundManager.mute('staticAudio');
+  }
+/*
 function toggleStatic() {
   $('#static').toggleClass('static-on');
   $('#static').toggleClass('static-off');
   soundManager.toggleMute('staticAudio');
 }
+*/
 
 // ---------------------------- FINDING & PLAYING VIDEOS ----------------------------
 
 // User input - DISABLED FOR COIN SLOT
 /*
-$(document).on("keydown", function (e) {
-  if(acceptingInput) {
-    if(e.keyCode === 32 || e.keyCode === 40) {
-      goDeeper();
-    }
-  }
-});
 
 $(document).on("touchend", function (e) {
   if (acceptingInput) {
@@ -130,20 +132,23 @@ $(document).click(function(e) {
     }
   }
 });
+*/
+
+
+$(document).on("keydown", function (e) {
+  if(acceptingInput) {
+    if(e.keyCode === 32 || e.keyCode === 40) {
+      goDeeper();
+    }
+  }
+});
+
 
 function goDeeper() {
   nextVideo();
-  toggleStatic();
-  player.mute()
+    enableStatic();
+    player.mute();
   acceptingInput = false;
-}
-*/
-
-function onCoinSlot()
-{
-  if(acceptingInput) {
-    goDeeper();
-  }
 }
 
 
