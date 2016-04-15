@@ -104,8 +104,8 @@ function toggleStatic() {
 
 // ---------------------------- FINDING & PLAYING VIDEOS ----------------------------
 
-
-
+// User input
+/*
 $(document).on("keydown", function (e) {
   if(acceptingInput) {
     if(e.keyCode === 32 || e.keyCode === 40) {
@@ -137,6 +137,15 @@ function goDeeper() {
   player.mute()
   acceptingInput = false;
 }
+*/
+
+function onCoinSlot()
+{
+  if(acceptingInput) {
+    goDeeper();
+  }
+}
+
 
 // Go to the next video. Called when the current video finishes or the user hits next.
 function nextVideo() {
