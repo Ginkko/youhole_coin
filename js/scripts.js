@@ -148,7 +148,7 @@ function goDeeper() {
   nextVideo();
     enableStatic();
     player.mute();
-  acceptingInput = false;
+  //acceptingInput = false; //HACK - ONLY USE IN COIN VERSION
 }
 
 
