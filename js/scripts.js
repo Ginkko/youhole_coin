@@ -64,7 +64,7 @@ function onPlayerReady(event) {
 var done = false;
 function onPlayerStateChange(event) {
   if (event.data == YT.PlayerState.ENDED) {
-    true = false;
+    acceptingInput = true;
     enableStatic();
     //nextVideo(); - DISABLED FOR COIN SLOT
   }
